@@ -52,14 +52,16 @@ class music(commands.Cog):
         #end if
 
         FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','options': '-vn'}
-        YDL_OPTIONS = {'format': "bestaudio"}
+        YDL_OPTIONS = {'format': 'bestaudio','acodec': 'mp3', 'source_address': '0.0.0.0'}
 
         vc = ctx.voice_client
 
         with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
             info = ydl.extract_info(args, download=False)
+
             url2 = info['formats'][0]['url']
             source = await discord.FFmpegOpusAudio.from_probe(url2, **FFMPEG_OPTIONS)
+
             vc.play(source)
 
 def setup(client):
