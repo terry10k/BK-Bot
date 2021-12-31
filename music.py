@@ -4,6 +4,9 @@ from discord.ext import commands
 import youtube_dl
 from youtube_search import YoutubeSearch
 
+import random
+
+FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','options': '-vn'}
 
 class music(commands.Cog):
     def __init__(self, client):
@@ -18,6 +21,7 @@ class music(commands.Cog):
         voice_channel = ctx.author.voice.channel
         if (ctx.voice_client is None):
             await voice_channel.connect()
+            await self.laugh(ctx)
         else:
             await ctx.voice_client.move_to(voice_channel)
 
@@ -43,6 +47,8 @@ class music(commands.Cog):
 
     @commands.command()
     async def play(self, ctx, *, args):
+        await self.join(ctx)
+
         ctx.voice_client.stop()
 
         #search yt if not url
@@ -51,7 +57,7 @@ class music(commands.Cog):
             args = "https://www.youtube.com/watch?v=" + results[0]['id']
         #end if
 
-        FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5','options': '-vn'}
+
         YDL_OPTIONS = {'format': 'bestaudio','acodec': 'mp3', 'source_address': '0.0.0.0'}
 
         vc = ctx.voice_client
@@ -64,5 +70,23 @@ class music(commands.Cog):
 
             vc.play(source)
 
+    @commands.command()
+    async def laugh(self, ctx):
+        chance = 1
+        lNum = random.randint(1,3)
+
+        if(chance == 1):
+
+            vc = ctx.voice_client
+
+            url = "BK-Laugh " + str(lNum) + ".mp3"
+
+            source = discord.FFmpegPCMAudio(source=url)
+
+            vc.play(source)
+
+
 def setup(client):
     client.add_cog(music(client))
+
+
