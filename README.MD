@@ -1,4 +1,5 @@
-This is BK Bot. He is a discord bot for personal use that will play audio from youtube
+This is BK Bot with voice lines based on my former manager Brandon Knuth. He is a discord bot for personal use that will play audio from youtube
+This is ready for deployment on hosting websites.
 
 USAGE:
 1. Join a voice channel
@@ -8,8 +9,6 @@ USAGE:
 SUPPORTED COMMANDS:
 
 All command start with a ./
-
-As of right now there not that many commands available
 
 List of commands:
 1. join
