@@ -1,5 +1,7 @@
-This is BK Bot with voice lines based on my former manager Brandon Knuth. He is a discord bot for personal use that will play audio from youtube
-This is ready for deployment on hosting websites.
+This is discord music with voice lines based on my former manager Brandon Knuth. He is a discord bot for personal use that will play audio from youtube.
+
+Although this project is ready for deployment, you might want to self host this as I have gotten warnings on Heroku and other 'free' hosting platforms.
+
 
 USAGE:
 1. Join a voice channel
